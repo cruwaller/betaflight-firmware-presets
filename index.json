@@ -267,6 +267,8 @@
       "EVO",
       "expert",
       "express",
+      "F7",
+      "FC",
       "feisar",
       "filter",
       "filtering",
@@ -433,7 +435,7 @@
     },
     {
       "fullPath": "presets/4.3/bnf/PeHo_oulwaref7.txt",
-      "hash": "ff0adb0864317cf0c9c4cb98fbfdb166694325e136590e04d65b33c1b3ba33b7",
+      "hash": "b02e80cfc964c3c4106569d80ba78204f04b85f008dd5cfddd8923a03390cf27",
       "title": "OULWare F7 FC configuration",
       "firmware_version": [
         "4.3"
@@ -441,7 +443,10 @@
       "category": "BNF",
       "status": "EXPERIMENTAL",
       "keywords": [
-        "OULWare"
+        "OULWare",
+        "PeHo",
+        "F7",
+        "FC"
       ],
       "author": "PeHo",
       "priority": 0
@@ -2207,7 +2212,7 @@
     },
     {
       "fullPath": "presets/4.3/tune/PeHo_race.txt",
-      "hash": "b7d62613519b3901bb0ebdba2337e2496730a622fe95b4babaec5da2b4735409",
+      "hash": "7e309590bc64281944702a9a4b1983662a9cdb6af169c0c6e8496b7e12b8f2c7",
       "title": "PeHo Race 6s 5\"",
       "firmware_version": [
         "4.3"

@@ -11,6 +11,10 @@
 set vbat_max_cell_voltage = 450
 set debug_mode = GYRO_SCALED
 
+# -- beacon --
+beacon RX_LOST
+beacon RX_SET
+
 # ******************************************
 # -- Gyro lowpass filters --
 set gyro_lpf1_type = PT1
@@ -135,6 +139,15 @@ set crsf_baud = 0
 set crsf_use_negotiated_baud = OFF
 set serialrx_halfduplex = OFF
 
+# -- rxrange for crsf --
+rxrange 0 988 2011
+rxrange 1 988 2011
+rxrange 2 988 2011
+rxrange 3 988 2011
+
+set deadband = 5
+set yaw_deadband = 5
+
 #$ OPTION BEGIN (UNCHECKED): ELRS protocol
 set serialrx_provider = ELRS
 set crsf_baud = 1000000
@@ -151,19 +164,21 @@ set feedforward_smooth_factor = 35
 set feedforward_jitter_factor = 5
 #$ OPTION END
 
-#$ OPTION BEGIN (CHECKED): ELRS 500Hz
+#$ OPTION BEGIN (UNCHECKED): ELRS 500Hz
 set feedforward_averaging = 2_POINT
 set feedforward_smooth_factor = 65
 set feedforward_jitter_factor = 5
 #$ OPTION END
 
-#$ OPTION BEGIN (CHECKED): Race feedforward settings
+#$ OPTION BEGIN (CHECKED): ELRS 500Hz Race FF
+set feedforward_averaging = 2_POINT
 set feedforward_smooth_factor = 65
 set feedforward_jitter_factor = 3
 set feedforward_boost = 18
 set rc_smoothing_auto_factor = 25
 set rc_smoothing_auto_factor_throttle = 25
 #$ OPTION END
+
 
 #$ OPTION BEGIN (CHECKED): Telemetry Cleanup
 # ******************************************
@@ -190,6 +205,18 @@ set telemetry_disabled_esc_temperature = ON
 set telemetry_disabled_temperature = ON
 set telemetry_disabled_cap_used = ON
 #$ OPTION END
+
+
+#$ OPTION BEGIN (CHECKED): My Modes
+# ******************************************
+# -- aux --
+aux 0 0 0 1300 2100 0 0
+aux 1 13 3 1800 2100 0 0
+aux 2 26 0 1800 2100 0 0
+aux 3 35 1 1800 2100 0 0
+aux 4 39 2 900 950 0 0
+#$ OPTION END
+
 
 #$ OPTION BEGIN (CHECKED): My Rates
 # ******************************************
@@ -231,6 +258,7 @@ set osd_warn_rssi = OFF
 set osd_warn_link_quality = ON
 set osd_warn_rssi_dbm = OFF
 set osd_warn_over_cap = OFF
+
 set osd_rssi_alarm = 25
 set osd_link_quality_alarm = 60
 set osd_rssi_dbm_alarm = -100
@@ -311,6 +339,7 @@ set osd_rcchannels_pos = 234
 set osd_camera_frame_pos = 35
 set osd_efficiency_pos = 234
 set osd_total_flights_pos = 234
+
 set osd_stat_rtc_date_time = OFF
 set osd_stat_tim_1 = OFF
 set osd_stat_tim_2 = OFF
@@ -335,14 +364,15 @@ set osd_stat_total_flights = OFF
 set osd_stat_total_time = OFF
 set osd_stat_total_dist = OFF
 set osd_stat_min_rssi_dbm = ON
+set osd_stat_avg_cell_value = OFF
+set osd_gps_sats_show_hdop = OFF
+
 set osd_profile = 1
 set osd_profile_1_name = PeHo
-set osd_gps_sats_show_hdop = OFF
-set osd_displayport_device = MSP
+
 set osd_rcchannels = -1,-1,-1,-1
 set osd_camera_frame_width = 24
 set osd_camera_frame_height = 11
-set osd_stat_avg_cell_value = OFF
 set osd_framerate_hz = 12
 set osd_menu_background = TRANSPARENT
 #$ OPTION END
