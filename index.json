@@ -222,6 +222,7 @@
       "Acrobaix",
       "actual",
       "adjustments",
+      "Aleksi15",
       "AlexFPV",
       "analog",
       "aux",
@@ -413,8 +414,26 @@
   },
   "presets": [
     {
+      "fullPath": "presets/4.3/bnf/Aleksi15_five33.txt",
+      "hash": "8d88a7931220bff6869c245f597a97f0d10cf4cd93c413b084f5689c0d79ef30",
+      "title": "Aleksi15 Race 6s 5\"",
+      "firmware_version": [
+        "4.3"
+      ],
+      "category": "BNF",
+      "status": "EXPERIMENTAL",
+      "keywords": [
+        "Aleksi15",
+        "6S",
+        "race",
+        "5\""
+      ],
+      "author": "PeHo",
+      "priority": 0
+    },
+    {
       "fullPath": "presets/4.3/bnf/PeHo_oulwaref7.txt",
-      "hash": "d539001018aae4425a2d4aac8b44ece5d66e0cbd28af698bcf7ececc6ed15f80",
+      "hash": "ff0adb0864317cf0c9c4cb98fbfdb166694325e136590e04d65b33c1b3ba33b7",
       "title": "OULWare F7 FC configuration",
       "firmware_version": [
         "4.3"
@@ -2188,7 +2207,7 @@
     },
     {
       "fullPath": "presets/4.3/tune/PeHo_race.txt",
-      "hash": "40994f0967cf6f73e99630efa85b06035827c3815c3fcd07026576cbe6938204",
+      "hash": "b7d62613519b3901bb0ebdba2337e2496730a622fe95b4babaec5da2b4735409",
       "title": "PeHo Race 6s 5\"",
       "firmware_version": [
         "4.3"

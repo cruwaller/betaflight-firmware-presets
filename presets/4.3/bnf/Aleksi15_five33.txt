@@ -1,0 +1,166 @@
+#$ TITLE: Aleksi15 Race 6s 5"
+#$ FIRMWARE_VERSION: 4.3
+#$ CATEGORY: BNF
+#$ STATUS: EXPERIMENTAL
+#$ KEYWORDS: Aleksi15, 6S, race, 5"
+#$ AUTHOR: PeHo
+#$ DESCRIPTION: This 6s racing tune for five33 with Rush BLADE F7 FC
+#$ DISCUSSION:
+
+# -- Name --
+# set name = 2
+set display_name = Aleksi15
+
+# -- Debug --
+set debug_mode = GYRO_SCALED
+
+# -- beacon --
+beacon RX_LOST
+beacon RX_SET
+
+# -- aux --
+aux 0 0 0 1700 2100 0 0
+aux 1 13 2 1700 2100 0 0
+aux 2 26 0 1700 2100 0 0
+aux 3 35 2 1300 1700 0 0
+aux 4 49 1 1700 2100 0 0
+
+# -- rxrange --
+rxrange 0 988 2011
+rxrange 1 988 2011
+rxrange 2 988 2011
+rxrange 3 988 2011
+
+# ******************************************
+# Tune
+
+# master
+set gyro_lpf1_static_hz = 500
+set gyro_lpf2_static_hz = 0
+set dyn_notch_count = 2
+set dyn_notch_q = 400
+set gyro_lpf1_dyn_min_hz = 0
+set simplified_gyro_filter = OFF
+
+set rpm_filter_harmonics = 2
+set rpm_filter_min_hz = 120
+set rpm_filter_fade_range_hz = 100
+
+set acc_calibration = 232,2604,-474,1
+set min_check = 1005
+set max_check = 1995
+set min_throttle = 1070
+
+set dshot_bidir = ON
+set use_unsynced_pwm = OFF
+set motor_pwm_protocol = DSHOT600
+set motor_pwm_rate = 480
+
+set vbat_max_cell_voltage = 435
+set vbat_min_cell_voltage = 290
+set vbat_warning_cell_voltage = 300
+
+set yaw_motors_reversed = ON
+set small_angle = 180
+set runaway_takeoff_prevention = OFF
+
+
+set anti_gravity_gain = 5500
+set iterm_relax_cutoff = 20
+set throttle_boost = 2
+
+set p_pitch = 37
+set i_pitch = 67
+set d_pitch = 25
+set f_pitch = 99
+set p_roll = 35
+set i_roll = 63
+set d_roll = 22
+set f_roll = 95
+set p_yaw = 35
+set i_yaw = 63
+set f_yaw = 95
+set d_min_roll = 16
+set d_min_pitch = 19
+set d_max_gain = 25
+set d_max_advance = 0
+set dyn_idle_min_rpm = 40
+set dyn_idle_p_gain = 35
+
+set simplified_master_multiplier = 80
+set simplified_d_gain = 70
+
+# ******************************************
+# default RC receiver settings
+
+#$ INCLUDE: presets/4.3/rc_link/defaults.txt
+
+feature RX_SERIAL
+set serialrx_provider = CRSF
+set serialrx_halfduplex = OFF
+
+#$ OPTION BEGIN (UNCHECKED): ELRS 250Hz
+set feedforward_averaging = OFF
+set feedforward_smooth_factor = 35
+set feedforward_jitter_factor = 5
+#$ OPTION END
+
+#$ OPTION BEGIN (CHECKED): ELRS 500Hz race
+set feedforward_averaging = 2_POINT
+set feedforward_smooth_factor = 65
+set feedforward_jitter_factor = 3
+set feedforward_boost = 18
+set rc_smoothing_auto_factor = 25
+set rc_smoothing_auto_factor_throttle = 25
+#$ OPTION END
+
+
+#$ OPTION BEGIN (CHECKED): My OSD
+# ******************************************
+# OSD settings
+set osd_tim2 = 2577
+set osd_vbat_pos = 2050
+set osd_rssi_pos = 384
+set osd_link_quality_pos = 2401
+set osd_rssi_dbm_pos = 128
+set osd_tim_2_pos = 2065
+set osd_throttle_pos = 2368
+set osd_vtx_channel_pos = 2453
+set osd_craft_name_pos = 2438
+set osd_display_name_pos = 2441
+set osd_warnings_pos = 14537
+set osd_disarmed_pos = 2282
+set osd_stat_max_spd = OFF
+set osd_stat_battery = ON
+set osd_stat_min_rssi = OFF
+set osd_stat_max_curr = OFF
+set osd_stat_used_mah = OFF
+set osd_stat_bbox = OFF
+set osd_stat_bb_no = OFF
+set osd_stat_min_link_quality = ON
+#$ OPTION END
+
+#$ OPTION BEGIN (CHECKED): My rates
+# ******************************************
+# Rate settings
+set rates_type = BETAFLIGHT
+set roll_rc_rate = 98
+set pitch_rc_rate = 98
+set yaw_rc_rate = 98
+set roll_expo = 1
+set pitch_expo = 1
+set yaw_expo = 1
+set roll_srate = 58
+set pitch_srate = 58
+set yaw_srate = 58
+set tpa_rate = 70
+set tpa_breakpoint = 1750
+#$ OPTION END
+
+#$ OPTION BEGIN (CHECKED): TBS Unify Pro32 Nano SA2.1
+#$ INCLUDE: presets/4.3/vtx/Unify_Pro32_Nano_SA2_1.txt
+#$ OPTION END
+
+#$ OPTION BEGIN (UNCHECKED): TBS Unify Pro Nano SA2.0
+#$ INCLUDE: presets/4.3/vtx/Unify_Pro_Nano_SA2_0_lite.txt
+#$ OPTION END
