@@ -29,34 +29,34 @@ set simplified_gyro_filter = ON
 set simplified_gyro_filter_multiplier = 100
 
 #$ OPTION BEGIN (UNCHECKED): Gyro Dyn 500Hz
-set gyro_lpf1_static_hz = 0
-set gyro_lpf2_static_hz = 700
-set gyro_lpf1_dyn_min_hz = 500
-set gyro_lpf1_dyn_max_hz = 1000
-set simplified_gyro_filter = OFF
+    set gyro_lpf1_static_hz = 0
+    set gyro_lpf2_static_hz = 700
+    set gyro_lpf1_dyn_min_hz = 500
+    set gyro_lpf1_dyn_max_hz = 1000
+    set simplified_gyro_filter = OFF
 #$ OPTION END
 
-#$ OPTION BEGIN (UNCHECKED): Gyro LPF1 500Hz
-set gyro_lpf1_static_hz = 500
-set gyro_lpf2_static_hz = 0
-set gyro_lpf1_dyn_min_hz = 0
-set gyro_lpf1_dyn_max_hz = 0
-set simplified_gyro_filter = OFF
+#$ OPTION BEGIN (CHECKED): Gyro LPF1 500Hz
+    set gyro_lpf1_static_hz = 500
+    set gyro_lpf2_static_hz = 0
+    set gyro_lpf1_dyn_min_hz = 0
+    set gyro_lpf1_dyn_max_hz = 0
+    set simplified_gyro_filter = OFF
 #$ OPTION END
 
 #$ OPTION BEGIN (UNCHECKED): Gyro Filters OFF
-set gyro_lpf1_static_hz = 0
-set gyro_lpf2_static_hz = 0
-set gyro_lpf1_dyn_min_hz = 0
-set gyro_lpf1_dyn_max_hz = 0
-set simplified_gyro_filter = OFF
+    set gyro_lpf1_static_hz = 0
+    set gyro_lpf2_static_hz = 0
+    set gyro_lpf1_dyn_min_hz = 0
+    set gyro_lpf1_dyn_max_hz = 0
+    set simplified_gyro_filter = OFF
 #$ OPTION END
 
 # -- Gyro Dynamic Notches --
 set dyn_notch_count = 2
 set dyn_notch_q = 400
-set dyn_notch_min_hz = 150
-set dyn_notch_max_hz = 650
+set dyn_notch_min_hz = 110
+set dyn_notch_max_hz = 450
 
 # ******************************************
 # -- Dterm filtering --
@@ -70,6 +70,7 @@ set dshot_bidir = ON
 set rpm_filter_fade_range_hz = 100
 set rpm_filter_harmonics = 2
 set rpm_filter_min_hz = 120
+set rpm_filter_q = 500
 
 # ******************************************
 # -- Misc --
@@ -81,7 +82,7 @@ set thrust_linear = 0
 set throttle_boost = 2
 
 # -- Antigravity --
-set anti_gravity_gain = 5500
+set anti_gravity_gain = 5000
 
 # -- iTerm  --
 set iterm_relax_cutoff = 20
@@ -92,8 +93,8 @@ set pidsum_limit_yaw = 1000
 
 # -- PID values --
 set simplified_pids_mode = RPY
-set simplified_master_multiplier = 80
-set simplified_d_gain = 80
+set simplified_master_multiplier = 70
+set simplified_d_gain = 60
 set d_max_gain = 25
 set d_max_advance = 0
 
@@ -105,16 +106,20 @@ set tpa_rate = 70
 set tpa_breakpoint = 1250
 set tpa_mode = D
 
+set throttle_limit_percent = 90
+
 # ******************************************
 #$ OPTION BEGIN (CHECKED): Dshot600
-set dshot_bidir = ON
-set motor_pwm_protocol = DSHOT600
+    set dshot_bidir = ON
+    set motor_pwm_protocol = DSHOT600
 #$ OPTION END
 
 #$ OPTION BEGIN (UNCHECKED): Dshot300
-set dshot_bidir = ON
-set motor_pwm_protocol = Dshot300
+    set dshot_bidir = ON
+    set motor_pwm_protocol = Dshot300
 #$ OPTION END
+
+set motor_output_limit = 90
 
 # ******************************************
 # dynamic idle defaults
@@ -122,9 +127,9 @@ set dyn_idle_min_rpm = 0
 set dyn_idle_p_gain = 50
 
 #$ OPTION BEGIN (UNCHECKED): Dynamic idle for 2000kv 6s
-# dynamic idle for 6s 2000kv
-set dyn_idle_min_rpm = 40
-set dyn_idle_p_gain = 35
+    # dynamic idle for 6s 2000kv
+    set dyn_idle_min_rpm = 40
+    set dyn_idle_p_gain = 35
 #$ OPTION END
 
 
@@ -149,230 +154,149 @@ set deadband = 5
 set yaw_deadband = 5
 
 #$ OPTION BEGIN (UNCHECKED): ELRS protocol
-set serialrx_provider = ELRS
-set crsf_baud = 1000000
+    set serialrx_provider = ELRS
+    set crsf_baud = 1000000
 #$ OPTION END
 
 #$ OPTION BEGIN (UNCHECKED): CRSFv3 protocol
-set crsf_baud = 1000000
-set crsf_use_negotiated_baud = ON
+    set crsf_baud = 1000000
+    set crsf_use_negotiated_baud = ON
 #$ OPTION END
 
 #$ OPTION BEGIN (UNCHECKED): ELRS 250Hz
-set feedforward_averaging = OFF
-set feedforward_smooth_factor = 35
-set feedforward_jitter_factor = 5
+    set feedforward_averaging = OFF
+    set feedforward_smooth_factor = 35
+    set feedforward_jitter_factor = 5
 #$ OPTION END
 
 #$ OPTION BEGIN (UNCHECKED): ELRS 500Hz
-set feedforward_averaging = 2_POINT
-set feedforward_smooth_factor = 65
-set feedforward_jitter_factor = 5
+    set feedforward_averaging = 2_POINT
+    set feedforward_smooth_factor = 65
+    set feedforward_jitter_factor = 5
 #$ OPTION END
 
 #$ OPTION BEGIN (CHECKED): ELRS 500Hz Race FF
-set feedforward_averaging = 2_POINT
-set feedforward_smooth_factor = 65
-set feedforward_jitter_factor = 3
-set feedforward_boost = 18
-set rc_smoothing_auto_factor = 25
-set rc_smoothing_auto_factor_throttle = 25
+    set feedforward_averaging = 2_POINT
+    set feedforward_smooth_factor = 65
+    set feedforward_jitter_factor = 3
+    set feedforward_boost = 18
+    set rc_smoothing_auto_factor = 25
+    set rc_smoothing_auto_factor_throttle = 25
 #$ OPTION END
 
 
 #$ OPTION BEGIN (CHECKED): Telemetry Cleanup
-# ******************************************
-# -- Disable all but voltage --
-set telemetry_disabled_voltage = OFF
-set telemetry_disabled_current = ON
-set telemetry_disabled_fuel = ON
-set telemetry_disabled_mode = ON
-set telemetry_disabled_acc_x = ON
-set telemetry_disabled_acc_y = ON
-set telemetry_disabled_acc_z = ON
-set telemetry_disabled_pitch = ON
-set telemetry_disabled_roll = ON
-set telemetry_disabled_heading = ON
-set telemetry_disabled_altitude = ON
-set telemetry_disabled_vario = ON
-set telemetry_disabled_lat_long = ON
-set telemetry_disabled_ground_speed = ON
-set telemetry_disabled_distance = ON
-set telemetry_disabled_esc_current = ON
-set telemetry_disabled_esc_voltage = ON
-set telemetry_disabled_esc_rpm = ON
-set telemetry_disabled_esc_temperature = ON
-set telemetry_disabled_temperature = ON
-set telemetry_disabled_cap_used = ON
+    # ******************************************
+    # -- Disable all but voltage --
+    set telemetry_disabled_voltage = OFF
+    set telemetry_disabled_current = ON
+    set telemetry_disabled_fuel = ON
+    set telemetry_disabled_mode = ON
+    set telemetry_disabled_acc_x = ON
+    set telemetry_disabled_acc_y = ON
+    set telemetry_disabled_acc_z = ON
+    set telemetry_disabled_pitch = ON
+    set telemetry_disabled_roll = ON
+    set telemetry_disabled_heading = ON
+    set telemetry_disabled_altitude = ON
+    set telemetry_disabled_vario = ON
+    set telemetry_disabled_lat_long = ON
+    set telemetry_disabled_ground_speed = ON
+    set telemetry_disabled_distance = ON
+    set telemetry_disabled_esc_current = ON
+    set telemetry_disabled_esc_voltage = ON
+    set telemetry_disabled_esc_rpm = ON
+    set telemetry_disabled_esc_temperature = ON
+    set telemetry_disabled_temperature = ON
+    set telemetry_disabled_cap_used = ON
 #$ OPTION END
 
 
 #$ OPTION BEGIN (CHECKED): My Modes
-# ******************************************
-# -- aux --
-aux 0 0 0 1300 2100 0 0
-aux 1 13 3 1800 2100 0 0
-aux 2 26 0 1800 2100 0 0
-aux 3 35 1 1800 2100 0 0
-aux 4 39 2 900 950 0 0
+    # ******************************************
+    # -- aux --
+    aux 0 0 0 1300 2100 0 0
+    aux 1 13 3 1800 2100 0 0
+    aux 2 26 0 1800 2100 0 0
+    aux 3 35 1 1800 2100 0 0
+    aux 4 39 2 900 950 0 0
 #$ OPTION END
 
 
 #$ OPTION BEGIN (CHECKED): My Rates
-# ******************************************
-# My rate configuration
-set rateprofile_name = PeHo
-set thr_mid = 50
-set thr_expo = 0
-set rates_type = BETAFLIGHT
-set quickrates_rc_expo = OFF
-set roll_rc_rate = 82
-set pitch_rc_rate = 82
-set yaw_rc_rate = 82
-set roll_expo = 3
-set pitch_expo = 3
-set yaw_expo = 3
-set roll_srate = 66
-set pitch_srate = 66
-set yaw_srate = 62
+    # ******************************************
+    # My rate configuration
+    set rateprofile_name = PeHo
+    set thr_mid = 50
+    set thr_expo = 0
+    set rates_type = BETAFLIGHT
+    set quickrates_rc_expo = OFF
+    set roll_rc_rate = 82
+    set pitch_rc_rate = 82
+    set yaw_rc_rate = 82
+    set roll_expo = 3
+    set pitch_expo = 3
+    set yaw_expo = 3
+    set roll_srate = 66
+    set pitch_srate = 66
+    set yaw_srate = 62
 #$ OPTION END
 
 #$ OPTION BEGIN (CHECKED): My OSD
-# ******************************************
-# My OSD configuration
-set osd_units = METRIC
-set osd_warn_arming_disable = ON
-set osd_warn_batt_not_full = OFF
-set osd_warn_batt_warning = ON
-set osd_warn_batt_critical = ON
-set osd_warn_visual_beeper = ON
-set osd_warn_crash_flip = ON
-set osd_warn_esc_fail = ON
-set osd_warn_core_temp = OFF
-set osd_warn_rc_smoothing = OFF
-set osd_warn_fail_safe = ON
-set osd_warn_launch_control = ON
-set osd_warn_no_gps_rescue = OFF
-set osd_warn_gps_rescue_disabled = OFF
-set osd_warn_rssi = OFF
-set osd_warn_link_quality = ON
-set osd_warn_rssi_dbm = OFF
-set osd_warn_over_cap = OFF
+    # ******************************************
+    # My OSD configuration
+    set osd_profile = 1
+    set osd_profile_1_name = PeHo
 
-set osd_rssi_alarm = 25
-set osd_link_quality_alarm = 60
-set osd_rssi_dbm_alarm = -100
-set osd_cap_alarm = 2200
-set osd_alt_alarm = 100
-set osd_distance_alarm = 0
-set osd_esc_temp_alarm = -128
-set osd_esc_rpm_alarm = -1
-set osd_esc_current_alarm = -1
-set osd_core_temp_alarm = 70
-set osd_ah_max_pit = 20
-set osd_ah_max_rol = 40
-set osd_ah_invert = OFF
-set osd_logo_on_arming = OFF
-set osd_logo_on_arming_duration = 5
-set osd_tim1 = 2576
-set osd_tim2 = 2579
-set osd_vbat_pos = 12744
-set osd_rssi_pos = 12705
-set osd_link_quality_pos = 14753
-set osd_link_tx_power_pos = 234
-set osd_rssi_dbm_pos = 14785
-set osd_tim_1_pos = 14337
-set osd_tim_2_pos = 234
-set osd_remaining_time_estimate_pos = 56
-set osd_flymode_pos = 234
-set osd_anti_gravity_pos = 234
-set osd_g_force_pos = 234
-set osd_throttle_pos = 234
-set osd_vtx_channel_pos = 1
-set osd_crosshairs_pos = 12493
-set osd_ah_sbar_pos = 206
-set osd_ah_pos = 78
-set osd_current_pos = 471
-set osd_mah_drawn_pos = 89
-set osd_motor_diag_pos = 234
-set osd_craft_name_pos = 12746
-set osd_display_name_pos = 2506
-set osd_gps_speed_pos = 417
-set osd_gps_lon_pos = 481
-set osd_gps_lat_pos = 497
-set osd_gps_sats_pos = 449
-set osd_home_dir_pos = 463
-set osd_home_dist_pos = 430
-set osd_flight_dist_pos = 56
-set osd_compass_bar_pos = 234
-set osd_altitude_pos = 470
-set osd_pid_roll_pos = 234
-set osd_pid_pitch_pos = 234
-set osd_pid_yaw_pos = 234
-set osd_debug_pos = 4129
-set osd_power_pos = 234
-set osd_pidrate_profile_pos = 234
-set osd_warnings_pos = 14665
-set osd_avg_cell_voltage_pos = 14806
-set osd_pit_ang_pos = 234
-set osd_rol_ang_pos = 234
-set osd_battery_usage_pos = 234
-set osd_disarmed_pos = 330
-set osd_nheading_pos = 234
-set osd_up_down_reference_pos = 205
-set osd_nvario_pos = 234
-set osd_esc_tmp_pos = 234
-set osd_esc_rpm_pos = 234
-set osd_esc_rpm_freq_pos = 234
-set osd_rtc_date_time_pos = 234
-set osd_adjustment_range_pos = 234
-set osd_flip_arrow_pos = 234
-set osd_core_temp_pos = 296
-set osd_log_status_pos = 234
-set osd_stick_overlay_left_pos = 234
-set osd_stick_overlay_right_pos = 234
-set osd_stick_overlay_radio_mode = 2
-set osd_rate_profile_name_pos = 234
-set osd_pid_profile_name_pos = 234
-set osd_profile_name_pos = 234
-set osd_rcchannels_pos = 234
-set osd_camera_frame_pos = 35
-set osd_efficiency_pos = 234
-set osd_total_flights_pos = 234
+    set osd_warn_batt_not_full = OFF
+    set osd_warn_core_temp = OFF
+    set osd_warn_rc_smoothing = OFF
+    set osd_warn_no_gps_rescue = OFF
+    set osd_warn_gps_rescue_disabled = OFF
+    set osd_warn_link_quality = ON
+    set osd_rssi_alarm = 25
+    set osd_link_quality_alarm = 60
+    set osd_rssi_dbm_alarm = -100
+    set osd_tim1 = 2576
+    set osd_tim2 = 2579
+    set osd_vbat_pos = 12744
+    set osd_rssi_pos = 12705
+    set osd_link_quality_pos = 14753
+    set osd_rssi_dbm_pos = 14785
+    set osd_tim_1_pos = 14337
+    set osd_remaining_time_estimate_pos = 56
+    set osd_vtx_channel_pos = 1
+    set osd_crosshairs_pos = 12493
+    set osd_current_pos = 471
+    set osd_mah_drawn_pos = 89
+    set osd_craft_name_pos = 12746
+    set osd_display_name_pos = 2506
+    set osd_gps_speed_pos = 417
+    set osd_gps_lon_pos = 481
+    set osd_gps_lat_pos = 497
+    set osd_gps_sats_pos = 449
+    set osd_home_dir_pos = 463
+    set osd_home_dist_pos = 430
+    set osd_flight_dist_pos = 56
+    set osd_altitude_pos = 470
+    set osd_debug_pos = 4129
+    set osd_avg_cell_voltage_pos = 14806
+    set osd_disarmed_pos = 330
+    set osd_core_temp_pos = 296
+    set osd_stat_tim_2 = OFF
+    set osd_stat_max_spd = OFF
+    set osd_stat_min_batt = OFF
+    set osd_stat_battery = ON
+    set osd_stat_min_rssi = OFF
+    set osd_stat_max_curr = OFF
+    set osd_stat_used_mah = OFF
+    set osd_stat_bbox = OFF
+    set osd_stat_min_link_quality = ON
+    set osd_stat_min_rssi_dbm = ON
+#$ OPTION END
 
-set osd_stat_rtc_date_time = OFF
-set osd_stat_tim_1 = OFF
-set osd_stat_tim_2 = OFF
-set osd_stat_max_spd = OFF
-set osd_stat_max_dist = OFF
-set osd_stat_min_batt = OFF
-set osd_stat_endbatt = OFF
-set osd_stat_battery = ON
-set osd_stat_min_rssi = OFF
-set osd_stat_max_curr = OFF
-set osd_stat_used_mah = OFF
-set osd_stat_max_alt = OFF
-set osd_stat_bbox = OFF
-set osd_stat_bb_no = ON
-set osd_stat_max_g_force = OFF
-set osd_stat_max_esc_temp = OFF
-set osd_stat_max_esc_rpm = OFF
-set osd_stat_min_link_quality = ON
-set osd_stat_flight_dist = OFF
-set osd_stat_max_fft = OFF
-set osd_stat_total_flights = OFF
-set osd_stat_total_time = OFF
-set osd_stat_total_dist = OFF
-set osd_stat_min_rssi_dbm = ON
-set osd_stat_avg_cell_value = OFF
-set osd_gps_sats_show_hdop = OFF
 
-set osd_profile = 1
-set osd_profile_1_name = PeHo
-
-set osd_rcchannels = -1,-1,-1,-1
-set osd_camera_frame_width = 24
-set osd_camera_frame_height = 11
-set osd_framerate_hz = 12
-set osd_menu_background = TRANSPARENT
+#$ OPTION BEGIN (UNCHECKED): HDZero
+    # ******************************************
+    #$ INCLUDE: presets/4.3/vtx/HDZero.txt
 #$ OPTION END
