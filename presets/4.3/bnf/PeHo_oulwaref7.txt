@@ -257,7 +257,7 @@ rxrange 3 988 2011
 #$ OPTION END
 
 #$ OPTION BEGIN (UNCHECKED): HDZero
-#$ INCLUDE: presets/4.3/vtx/HDZero_race2.txt
+#$ INCLUDE: presets/4.3/vtx/HDZero.txt
 #$ OPTION END
 
 
