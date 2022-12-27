@@ -1,5 +1,5 @@
 #$ TITLE: OULWare F7 FC configuration
-#$ FIRMWARE_VERSION: 4.3
+#$ FIRMWARE_VERSION: 4.4
 #$ CATEGORY: BNF
 #$ STATUS: EXPERIMENTAL
 #$ KEYWORDS: OULWare, PeHo, F7, FC
@@ -158,7 +158,6 @@ set blackbox_sample_rate = 1/4
 set blackbox_device = SPIFLASH
 
 set max7456_spi_bus = 1
-set displayport_msp_serial = -1
 set osd_displayport_device = AUTO
 
 set baro_bustype = I2C
@@ -193,13 +192,12 @@ feature ANTI_GRAVITY
 serial 20 1 115200 57600 0 115200
 serial 0 0 115200 57600 0 115200
 serial 1 0 115200 57600 0 115200
-# VTx
-serial 2 2048 115200 57600 0 115200
-# Receiver
-serial 3 64 115200 57600 0 115200
+serial 2 0 115200 57600 0 115200
+serial 3 0 115200 57600 0 115200
 serial 4 0 115200 57600 0 115200
 serial 5 0 115200 57600 0 115200
 
+# Receiver
 #$ OPTION_GROUP BEGIN: HW version
   #$ OPTION BEGIN (UNCHECKED): v0.3
     serial 1 64 115200 57600 0 115200
@@ -251,17 +249,20 @@ beacon RX_SET
 
 
 # vtxtable
-set osd_displayport_device = AUTO
+set serialmsp_halfduplex = OFF
 #$ OPTION_GROUP BEGIN: VTX config
   #$ OPTION BEGIN (CHECKED): TBS Unify Pro32 Nano SA2.1
+    serial 2 2048 115200 57600 0 115200
     #$ INCLUDE: presets/4.3/vtx/Unify_Pro32_Nano_SA2_1.txt
   #$ OPTION END
 
   #$ OPTION BEGIN (UNCHECKED): TBS Unify Pro Nano SA2.0
+    serial 2 2048 115200 57600 0 115200
     #$ INCLUDE: presets/4.3/vtx/Unify_Pro_Nano_SA2_0_lite.txt
   #$ OPTION END
 
   #$ OPTION BEGIN (UNCHECKED): OpenVTX SA2.1
+    serial 2 2048 115200 57600 0 115200
     vtxtable bands 6
     vtxtable channels 8
     vtxtable band 1 BOSCAM_A A FACTORY 5865 5845 5825 5805 5785 5765 5745 5725
@@ -291,8 +292,14 @@ set osd_displayport_device = AUTO
     vtxtable powerlabels 0 RCE 25 100 400
   #$ OPTION END
 
+  #$ OPTION BEGIN (UNCHECKED): OpenVTX MSP
+    serial 2 131073 9600 57600 0 115200
+    set serialmsp_halfduplex = ON
+  #$ OPTION END
+
   #$ OPTION BEGIN (UNCHECKED): HDZero
-    #$ INCLUDE: presets/4.3/vtx/HDZero.txt
+    serial 2 131073 9600115200 57600 0 115200
+    set osd_displayport_device = MSP
     vtxtable bands 6
     vtxtable channels 8
     vtxtable band 1 BOSCAM_A A FACTORY    0    0    0    0    0    0    0    0
@@ -304,41 +311,24 @@ set osd_displayport_device = AUTO
     vtxtable powerlevels 3
     vtxtable powervalues 14 23 0
     vtxtable powerlabels 25 200 0
-
-    serial 2 1 115200 57600 0 115200
-    set displayport_msp_serial = 2
-    set osd_displayport_device = MSP
   #$ OPTION END
-
 #$ OPTION_GROUP END
 
 
 #$ OPTION BEGIN (CHECKED): My OSD
+  set osd_profile = 1
+  set osd_profile_1_name = -
+  set osd_profile_2_name = -
+  set osd_profile_3_name = -
   set osd_units = METRIC
-  set osd_warn_arming_disable = ON
-  set osd_warn_batt_not_full = ON
-  set osd_warn_batt_warning = ON
-  set osd_warn_batt_critical = ON
-  set osd_warn_visual_beeper = ON
-  set osd_warn_crash_flip = ON
-  set osd_warn_esc_fail = ON
-  set osd_warn_core_temp = ON
-  set osd_warn_rc_smoothing = ON
-  set osd_warn_fail_safe = ON
-  set osd_warn_launch_control = ON
-  set osd_warn_no_gps_rescue = ON
-  set osd_warn_gps_rescue_disabled = ON
-  set osd_warn_rssi = OFF
-  set osd_warn_link_quality = ON
-  set osd_warn_rssi_dbm = ON
-  set osd_warn_over_cap = OFF
+  set osd_warn_bitmask = 255613
   set osd_rssi_alarm = 25
   set osd_link_quality_alarm = 60
   set osd_rssi_dbm_alarm = -100
   set osd_cap_alarm = 2200
   set osd_alt_alarm = 100
   set osd_distance_alarm = 0
-  set osd_esc_temp_alarm = -128
+  set osd_esc_temp_alarm = 0  # 0 = OFF
   set osd_esc_rpm_alarm = -1
   set osd_esc_current_alarm = -1
   set osd_core_temp_alarm = 70
@@ -369,7 +359,7 @@ set osd_displayport_device = AUTO
   set osd_mah_drawn_pos = 89
   set osd_motor_diag_pos = 234
   set osd_craft_name_pos = 14730
-  set osd_display_name_pos = 164
+  set osd_pilot_name_pos = 164
   set osd_gps_speed_pos = 417
   set osd_gps_lon_pos = 481
   set osd_gps_lat_pos = 497
@@ -412,34 +402,7 @@ set osd_displayport_device = AUTO
   set osd_camera_frame_pos = 35
   set osd_efficiency_pos = 234
   set osd_total_flights_pos = 234
-  set osd_stat_rtc_date_time = OFF
-  set osd_stat_tim_1 = OFF
-  set osd_stat_tim_2 = OFF
-  set osd_stat_max_spd = OFF
-  set osd_stat_max_dist = OFF
-  set osd_stat_min_batt = ON
-  set osd_stat_endbatt = OFF
-  set osd_stat_battery = ON
-  set osd_stat_min_rssi = ON
-  set osd_stat_max_curr = OFF
-  set osd_stat_used_mah = OFF
-  set osd_stat_max_alt = OFF
-  set osd_stat_bbox = ON
-  set osd_stat_bb_no = ON
-  set osd_stat_max_g_force = OFF
-  set osd_stat_max_esc_temp = OFF
-  set osd_stat_max_esc_rpm = OFF
-  set osd_stat_min_link_quality = OFF
-  set osd_stat_flight_dist = OFF
-  set osd_stat_max_fft = OFF
-  set osd_stat_total_flights = OFF
-  set osd_stat_total_time = ON
-  set osd_stat_total_dist = OFF
-  set osd_stat_min_rssi_dbm = ON
-  set osd_profile = 1
-  set osd_profile_1_name = -
-  set osd_profile_2_name = -
-  set osd_profile_3_name = -
+  set osd_stat_bitmask = 10498464
   set osd_gps_sats_show_hdop = OFF
   set osd_rcchannels = -1,-1,-1,-1
   set osd_camera_frame_width = 24
